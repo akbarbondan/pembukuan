@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pembukuan/penjualan.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class TransactionCustomer extends StatefulWidget {
+  const TransactionCustomer({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TransactionCustomer> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _HomePageState extends State<TransactionCustomer> with TickerProviderStateMixin {
   TabController? tabsContrler;
   @override
   void initState() {
