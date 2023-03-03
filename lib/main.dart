@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
+import 'package:pembukuan/services/services.dart';
 import 'package:pembukuan/view_data_product.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ViewDataProduct(),
+    return ChangeNotifierProvider(
+      create: (context) => GetApi(),
+      child: const GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: ViewDataProduct(),
+      ),
     );
   }
 }

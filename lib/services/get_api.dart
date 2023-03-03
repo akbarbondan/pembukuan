@@ -1,7 +1,7 @@
 part of 'services.dart';
 
-class GetApi {
-   Future<List<Product>> fecthProduc() async {
+class GetApi extends ChangeNotifier {
+  Future<List<Product>> fecthProduc() async {
     final respond = await http
         .get(Uri.parse('http://www.sosiopet.com/api/Product/products.html'));
 

@@ -10,9 +10,16 @@ class ViewDataProduct extends StatefulWidget {
 }
 
 class _ViewDataProductState extends State<ViewDataProduct> {
-  var getApi = GetApi();
+  List<Product> uproduct = [];
+  List<Product> productLitst = [];
+
   @override
   void initState() {
+    var product = GetApi();
+    product.fecthProduc().then((item) {
+      uproduct = item;
+      productLitst = uproduct;
+    });
     super.initState();
   }
 
@@ -23,20 +30,42 @@ class _ViewDataProductState extends State<ViewDataProduct> {
           title: const Text('View data'),
         ),
         body: Center(
-            child: FutureBuilder<List<Product>>(
-                future: getApi.fecthProduc(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) => Card(
-                              child: ListTile(
-                                subtitle: Text(snapshot.data![index].kodeProd),
-                                title: Text(snapshot.data![index].namaProd),
-                              ),
-                            ));
-                  }
-                  return const CircularProgressIndicator();
-                })));
+            child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+              child: TextField(
+                  textInputAction: TextInputAction.search,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      suffixIcon: Icon(Icons.search),
+                      hintText: "Cari Barang"),
+                  onChanged: (string) {
+                    setState(() {
+                      productLitst = uproduct
+                          .where((element) => element.kodeProd
+                              .toLowerCase()
+                              .contains(string.toLowerCase()))
+                          .toList();
+                    });
+                  }),
+            ),
+            Expanded(
+                child: Container(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+              child: (productLitst.length != null)
+                  ? ListView.builder(
+                      itemCount: productLitst.length,
+                      //itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) => Card(
+                            child: ListTile(
+                              subtitle: Text(productLitst[index].kodeProd),
+                              title: Text(productLitst[index].namaProd),
+                            ),
+                          ))
+                  : const CircularProgressIndicator(),
+            )),
+          ],
+        )));
   }
 }

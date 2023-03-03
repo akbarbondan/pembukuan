@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pembukuan/services/services.dart';
 import 'package:pembukuan/transaksi_customer.dart';
 import 'package:get/get.dart';
 
@@ -12,12 +11,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-  void initState() {
-    var getApi = GetApi();
-    getApi.fecthProduc();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
