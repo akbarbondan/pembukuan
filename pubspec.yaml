@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   cupertino_date_time_picker: ^0.0.4
   get: ^4.6.5
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
