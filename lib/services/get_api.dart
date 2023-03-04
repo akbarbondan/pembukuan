@@ -7,6 +7,7 @@ class GetApi extends ChangeNotifier {
 
     if (respond.statusCode == 200) {
       var result = json.decode(respond.body);
+
       List data = result['Data'];
       return data.map((e) => Product.fromJson(e)).toList();
     } else {

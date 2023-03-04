@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pembukuan/transaksi_customer.dart';
+import 'package:pembukuan/pages/pages.dart';
 import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF003399),
+      backgroundColor: const Color(0xFF273015),
       body: SafeArea(
           bottom: false,
           child: Stack(
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
               ),
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.only(top: 125),
+                margin: const EdgeInsets.only(top: 200),
                 padding: const EdgeInsets.only(top: 48, right: 24, left: 24),
                 decoration: const BoxDecoration(
                     color: Colors.white,
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                       children: [
                         Card(
                           onTap: () {
-                            Get.to(const TransactionCustomer());
+                            Get.to(const MainPage());
                           },
                           text: 'Transaksi',
                           image: 'assets/pay.png',

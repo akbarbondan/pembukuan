@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pembukuan/model/models.dart';
 import 'package:pembukuan/services/services.dart';
 
@@ -18,13 +19,16 @@ class _ViewDataProductState extends State<ViewDataProduct> {
     var product = GetApi();
     product.fecthProduc().then((item) {
       uproduct = item;
-      productLitst = uproduct;
+      setState(() {
+        productLitst = uproduct;
+      });
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return Scaffold(
         appBar: AppBar(
           title: const Text('View data'),
@@ -59,6 +63,11 @@ class _ViewDataProductState extends State<ViewDataProduct> {
                       //itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) => Card(
                             child: ListTile(
+                              onTap: () {
+                                Get.snackbar(productLitst[index].namaProd,
+                                    "Ini adalah ${productLitst[index].namaProd}",
+                                    snackPosition: SnackPosition.BOTTOM);
+                              },
                               subtitle: Text(productLitst[index].kodeProd),
                               title: Text(productLitst[index].namaProd),
                             ),

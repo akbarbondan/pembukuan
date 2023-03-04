@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
+import 'package:pembukuan/home.dart';
 import 'package:pembukuan/services/services.dart';
-import 'package:pembukuan/view_data_product.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       create: (context) => GetApi(),
       child: const GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ViewDataProduct(),
+        home: Home(),
       ),
     );
   }
