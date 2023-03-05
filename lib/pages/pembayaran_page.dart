@@ -1,41 +1,73 @@
 part of 'pages.dart';
 
-class PenjualanPage extends StatelessWidget {
-  const PenjualanPage({Key? key}) : super(key: key);
+class PembayaranPage extends StatefulWidget {
+  const PembayaranPage({Key? key}) : super(key: key);
 
+  @override
+  State<PembayaranPage> createState() => _PembayaranPageState();
+}
+
+class _PembayaranPageState extends State<PembayaranPage> {
+  String? pembayaran;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          GestureDetector(
-            onTap: () => Get.to(const ViewDataProduct()),
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(16, 10, 16, 8),
-              width: double.infinity,
-              height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(width: 1, color: const Color(0xFFAEAEAE))),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Cari data',
-                ),
-              ),
-            ),
-          ),
           Expanded(
-              child: ListView(
-            children: const [
-              CardProduct(),
-              CardProduct(),
-              CardProduct(),
-              CardProduct(),
-              CardProduct(),
-              CardProduct(),
-              CardProduct(),
-            ],
+              child: Container(
+            margin: EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text('Jenis Pembayaran : ',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500)),
+                    ),
+                    Expanded(
+                      child: RadioListTile(
+                          title: Text('Cash',
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w500)),
+                          value: 'Cash',
+                          groupValue: pembayaran,
+                          onChanged: (value) {
+                            setState(() {
+                              pembayaran = value.toString();
+                            });
+                          }),
+                    ),
+                    Expanded(
+                      child: RadioListTile(
+                          title: Text('Bank',
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w500)),
+                          value: 'Bank',
+                          groupValue: pembayaran,
+                          onChanged: (value) {
+                            setState(() {
+                              pembayaran = value.toString();
+                            });
+                          }),
+                    ),
+                  ],
+                ),
+                Text('Nominal Yang Harus Dibayar',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w200,
+                        color: Colors.grey[500])),
+                SizedBox(
+                  height: 8,
+                ),
+                Text('Rp 50.000',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+              ],
+            ),
           )),
           Expanded(
               flex: 0,
@@ -112,72 +144,6 @@ class PenjualanPage extends StatelessWidget {
               ))
         ],
       ),
-    );
-  }
-}
-
-class CardProduct extends StatelessWidget {
-  const CardProduct({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-      width: double.infinity,
-      height: 80,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(width: 1, color: const Color(0xFFAEAEAE))),
-      child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Telur Mata sapi",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        "Rp. 50.000",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w300),
-                      ),
-                      SizedBox(
-                        width: 35,
-                      ),
-                      Icon(Icons.remove),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        '1',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(Icons.add),
-                    ],
-                  ),
-                ],
-              ),
-              const Text(
-                "Rp 50.000",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-            ],
-          )),
     );
   }
 }

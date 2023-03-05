@@ -11,8 +11,10 @@ class MainPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
+            title: Text('Transaksi'),
             leading: GestureDetector(
-                onTap: () => Get.back(), child: const Icon(Icons.arrow_back)),
+                onTap: () => Get.back(),
+                child: const Icon(Icons.arrow_back_ios)),
             backgroundColor: const Color(0xFF273015),
             bottom: TabBar(indicatorColor: Colors.white, tabs: [
               Tab(
@@ -32,7 +34,7 @@ class MainPage extends StatelessWidget {
           body: const TabBarView(
             children: [
               PenjualanPage(),
-              Icon(Icons.directions_transit),
+              PembayaranPage(),
               Icon(Icons.directions_bike),
             ],
           ),
